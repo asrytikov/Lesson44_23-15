@@ -1,9 +1,12 @@
-package com.example.lesson41.model;
+package com.example.lesson44.model;
+
+import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
 
 public class Account {
 
+    @Id
     private long id;
     private String name;
     private BigDecimal amount;

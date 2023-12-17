@@ -1,12 +1,9 @@
-package com.example.lesson41.controller;
+package com.example.lesson44.controllers;
 
-import com.example.lesson41.model.Account;
-import com.example.lesson41.model.TransferRequest;
-import com.example.lesson41.service.TransferService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.lesson44.model.Account;
+import com.example.lesson44.model.TransferRequest;
+import com.example.lesson44.services.TransferService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,8 +27,14 @@ public class AccountController {
     }
 
     @GetMapping("/accounts")
-    public List<Account> getAllAccounts(){
+    public Iterable<Account> getAllAccounts(
+            @RequestParam(required = false) String name
+    ){
+        if (name==null){
         return transferService.getAllAccounts();
+        }else{
+            return transferService.findAccountsByName(name);
+        }
     }
 
 }
